@@ -1,17 +1,6 @@
 <?php
 
-echo "hello world";
+include_once(__DIR__ . '/config.php'); 
 
-echo "hello world";
-
-echo "this made of local repository";  
-
-
-echo "this made of local repository 22 ";
-
-
-echo "this made of local ";     
-
-echo 1111;
-
+\Bitkit\Core\Entities\Unit::test(); 
 
