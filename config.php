@@ -1,5 +1,9 @@
 <?php
 
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);  
+
 //Корень проекта там где лежит  global_pass.php
 define('PROJECT_ROOT', __DIR__);
 
