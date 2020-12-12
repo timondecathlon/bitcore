@@ -34,14 +34,14 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
         $lines = [];
         $sql = static::getPDO()->prepare('SELECT * FROM ' . static::TABLE_NAME );
         $sql->execute();
-        while ($line = $sql->fetch(\PDO::FETCH_LAZY)) {
+        while ($line = $sql->fetch()) {
             $lines[] = $line;
         }
         return $lines;
     }
 
 
-    public function getLine()   
+    public function getLine()    
     {
         if (!$this->bdata) {    
             $sql = static::getPDO()->prepare('SELECT * FROM ' . static::TABLE_NAME . ' WHERE id=' . $this->id);
