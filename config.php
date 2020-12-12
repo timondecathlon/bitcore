@@ -1,19 +1,10 @@
 <?php
 
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);  
-
 //Корень проекта там где лежит  global_pass.php
 define('PROJECT_ROOT', __DIR__);
 
-echo 111;  
-
-//для использования классов
-require_once(PROJECT_ROOT.'/system/classes/errors.php');   
-
 //подключаем отображение ошибок
-//include_once(PROJECT_ROOT.'/errors.php');
+include_once(PROJECT_ROOT.'/errors.php');   
 
 //Формируем URL
 $isHttps = !empty($_SERVER['HTTPS']) && 'off' !== strtolower($_SERVER['HTTPS']);
