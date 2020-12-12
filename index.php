@@ -2,6 +2,8 @@
 
 echo 3334;
 
+echo 1111;  
+
 include_once(__DIR__ . '/config.php'); 
 
 \Bitkit\Core\Entities\Unit::test();
