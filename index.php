@@ -6,7 +6,7 @@ include_once(__DIR__ . '/config.php');
 
 \Bitkit\Core\Entities\Unit::testSomeElse();  
 
-echo 'final deploy test 1111';
+echo 'final deploy test 1111111222333';  
  
 
 
