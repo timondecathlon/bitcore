@@ -3,6 +3,8 @@
 //Корень проекта там где лежит  global_pass.php
 define('PROJECT_ROOT', __DIR__);
 
+echo 111;  
+
 //для использования классов
 require_once(PROJECT_ROOT.'/system/classes/errors.php');   
 
