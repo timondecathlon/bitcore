@@ -14,7 +14,7 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
         $this->id = $id;
     }
 
-    abstract public function setTable();
+    //abstract public function setTable();
 
     public static function getPDO(): \PDO
     {
