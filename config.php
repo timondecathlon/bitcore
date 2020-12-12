@@ -26,9 +26,9 @@ echo '<br>';
 
 //Записываем пассы в константы
 define("DB_HOST", 'localhost');
-define("DB_NAME", '');
-define("DB_USER", '');
-define("DB_PASSWORD", '');
+define("DB_NAME", 'cards');
+define("DB_USER", 'timon');
+define("DB_PASSWORD", '20091993dec'); 
 
 
 //для использования классов
