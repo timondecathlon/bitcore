@@ -1,18 +1,13 @@
 <?php
 
-echo 3334;
 
-echo 1111;  
+include_once(__DIR__ . '/config.php');     
 
-include_once(__DIR__ . '/config.php'); 
+var_dump(Card::getAllLines());     
 
-\Bitkit\Core\Entities\Unit::test();
+$card = new \Bitkit\Core\Entities\Card(2);
 
-\Bitkit\Core\Entities\Unit::testSomeElse();  
-
-echo 'final deploy test 1111111222333';
-
-echo 1111;
+var_dump($card->getData()); 
  
 
 

@@ -4,15 +4,14 @@ namespace Bitkit\Core\Entities;
 
 abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
 {
-    protected $pdo; // Идентификатор соединения
-    //protected $id;
-    public $bdata;
+    protected $id;  
+    
+    public $bdata; 
 
     /*конструктор, подключающийся к базе данных, устанавливающий локаль и кодировку соединения */
     public function __construct(int $id = null)
     {
         $this->id = $id;
-        $this->pdo = \Bitkit\Core\Database\Connect::getInstance()->getConnection();
     }
 
     abstract public function setTable();
@@ -30,11 +29,22 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
         return false;
     }
 
-
-    public function getLine()
+    public static function getAllLines()    
     {
-        if (!$this->bdata) {
-            $sql = $this->pdo->prepare("SELECT * FROM " . $this->setTable() . " WHERE id='" . $this->id . "' ");
+        $lines = [];
+        $sql = static::getPDO()->prepare('SELECT * FROM ' . static::TABLE_NAME );
+        $sql->execute();
+        while ($line = $sql->fetch(PDO::FETCH_LAZY)) {
+            $lines[] = $line;
+        }
+        return $lines;
+    }
+
+
+    public function getLine()   
+    {
+        if (!$this->bdata) {    
+            $sql = static::getPDO()->prepare('SELECT * FROM ' . static::TABLE_NAME . ' WHERE id=' . $this->id);
             $sql->execute();
             $this->bdata = $sql->fetch(PDO::FETCH_LAZY);
         }
