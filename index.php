@@ -1,5 +1,7 @@
 <?php
 
+echo 111;
+
 
 include_once(__DIR__ . '/config.php');      
 
