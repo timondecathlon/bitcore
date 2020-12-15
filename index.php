@@ -1,10 +1,6 @@
 <?php
 
-echo 111;
-
-echo 222222;
-
-echo 333333;
+echo 55555;
 
 
 include_once(__DIR__ . '/config.php');      
