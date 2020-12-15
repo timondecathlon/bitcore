@@ -3,7 +3,7 @@
 echo 55555;
 
 
-echo 777777;  
+echo 0000000;   
 
 
 include_once(__DIR__ . '/config.php');      
