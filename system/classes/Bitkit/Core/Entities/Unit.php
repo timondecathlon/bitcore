@@ -95,7 +95,7 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
         }
         $placeholders_str = trim($placeholders_str,',')
         
-        $sql = $this->getPDO()->prepare('INSERT INTO ' . static::TABLE_NAME . ' ($fields_str) VALUES(' . $placeholders_str . ') ');
+        $sql = static::getPDO()->prepare('INSERT INTO ' . static::TABLE_NAME . ' ($fields_str) VALUES(' . $placeholders_str . ') ');
         foreach ($fields_array as $key=>$value) {
             $sql->bindParam(":$fields_array[$key]", $values_array[$key]);
         }
@@ -132,7 +132,7 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
         } catch (\PDOException $e) {
             echo 'Подключение не удалось: ' . $e->getMessage(); 
         }
-        return false; 
+        return false;  
     }
 
     /**
