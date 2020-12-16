@@ -11,6 +11,8 @@ include_once(__DIR__ . '/config.php');
 $card = new \Bitkit\Core\Entities\Card(2);
 
 var_dump($card->getLine());  
+
+$conn = new \Bitkit\Core\Database\Connect();
  
 
 
