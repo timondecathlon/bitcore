@@ -12,7 +12,6 @@ $card = new \Bitkit\Core\Entities\Card(2);
 
 var_dump($card->getLine());  
 
-$conn = new \Bitkit\Core\Database\Connect();
  
 
 
