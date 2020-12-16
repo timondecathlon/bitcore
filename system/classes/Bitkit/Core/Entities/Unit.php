@@ -93,7 +93,7 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
         foreach ($fields_array as $key=>$value) {
             $placeholders_str .= ":$value,";
         }
-        $placeholders_str = trim($placeholders_str,',')
+        $placeholders_str = trim($placeholders_str,',');
         
         $sql = static::getPDO()->prepare('INSERT INTO ' . static::TABLE_NAME . ' ($fields_str) VALUES(' . $placeholders_str . ') ');
         foreach ($fields_array as $key=>$value) {
