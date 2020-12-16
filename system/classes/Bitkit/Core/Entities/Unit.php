@@ -4,11 +4,19 @@ namespace Bitkit\Core\Entities;
 
 abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
 {
+    /**
+     * Свойство содержащее в себе id строки в БД
+     */
     protected $id;       
     
+    /**
+     * Свойство содержащее в себе данные строки из БД
+     */
     public $bdata; 
 
-    /*конструктор, подключающийся к базе данных, устанавливающий локаль и кодировку соединения */
+    /**
+     * Конструктор получает и сохраняет id  
+     */
     public function __construct(int $id = null)      
     {
         $this->id = $id;
@@ -86,18 +94,18 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
      * @param array $values_array
      * @return int
      */
-    public function createLine(array $fields_array, array $values_array) : int  
+    public function createLine(array $fields,array $values) : int  
     {
-        $fields_str = implode(',',$fields_array);
+        $fields_str = implode(',',$fields);
         $placeholders_str = '';
-        foreach ($fields_array as $key=>$value) {
+        foreach ($fields as $key=>$value) {
             $placeholders_str .= ":$value,";
         }
         $placeholders_str = trim($placeholders_str,',');
         
         $sql = static::getPDO()->prepare('INSERT INTO ' . static::TABLE_NAME . ' ($fields_str) VALUES(' . $placeholders_str . ') ');
-        foreach ($fields_array as $key=>$value) {
-            $sql->bindParam(":$fields_array[$key]", $values_array[$key]);
+        foreach ($fields as $key => $value) {
+            $sql->bindParam(":$fields[$key]", $values[$key]);
         }
         try {
             $sql->execute();
@@ -113,17 +121,17 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
      *
      * @param array $fields_array
      * @param array $values_array
-     * @return bool
+     * @return bool 
      */
-    public function updateLine(array $fields_array, array $values_array)  : bool
+    public function updateLine(array $fields,array $values)  : bool
     {
         $update_str = '';
-        foreach ($fields_array as $key=>$value) {
+        foreach ($fields as $key=>$value) {
             $update_str .= "$value=:$value,";
         }
         $sql = static::getPDO()->prepare("UPDATE ". static::TABLE_NAME  ." SET ".trim($update_str,',')."  WHERE id=".$this->id);
-        foreach ($fields_array as $key=>$value) {
-            $sql->bindParam(":$value", $values_array[$key]);
+        foreach ($fields as $key => $value) {
+            $sql->bindParam(":$value", $values[$key]);
         }
         try {
             $sql->execute();
@@ -142,7 +150,7 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
      * @param $param
      * @return bool
      */
-    public function updateField($field, $param) : bool
+    public function updateField($field,$param) : bool
     {
         /*
         if ($this->updateLine([$field],[$param])) {
@@ -168,6 +176,6 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
             echo 'Подключение не удалось: ' . $e->getMessage();    
         }
         return false;
-    }
+    } 
 
-}
+} 
