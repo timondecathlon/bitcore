@@ -44,7 +44,7 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
      *
      * @return array | null  
      */
-    public static function getAllLines() : array | null    
+    public static function getAllLines() : ?array   
     {
         $lines = [];
         $sql = static::getPDO()->prepare('SELECT * FROM ' . static::TABLE_NAME );
@@ -66,7 +66,14 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
         return $this->bdata;
     }
 
-    public function getField($field)
+    /**
+     * Метод полученя значения поля в строке по названию
+     *
+     * @param string $field
+     * 
+     * @return mixed 
+     */
+    public function getField($field) : mixed
     {
         return trim($this->getLine()->$field);
     } 
