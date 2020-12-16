@@ -16,11 +16,21 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
 
     //abstract public function setTable();
 
+    /**
+     * Метод полученя объекта для работы с  БД
+     *
+     * @return PDO
+     */
     public static function getPDO(): \PDO
     {
         return \Bitkit\Core\Database\Connect::getInstance()->getConnection();
     }
 
+    /**
+     * Мотод для наполнения данными из БД во внешнем скрипте
+     * 
+     * @return bool     
+     */
     public function getData($data): bool
     {
         if ($this->bdata = (object)$data) {
@@ -29,7 +39,12 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
         return false;
     }
 
-    public static function getAllLines()    
+    /**
+     * Метод полученя всех строк в таблице
+     *
+     * @return array | null  
+     */
+    public static function getAllLines() : array | null    
     {
         $lines = [];
         $sql = static::getPDO()->prepare('SELECT * FROM ' . static::TABLE_NAME );
@@ -66,7 +81,6 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
      */
     public function createLine(array $fields_array, array $values_array) : int  
     {
-        /*
         $fields_str = implode(',',$fields_array);
         $placeholders_str = '';
         foreach ($fields_array as $key=>$value) {
@@ -80,13 +94,11 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
         }
         try {
             $sql->execute();
-            $this->id = $this->getPDO()->lastInsertId();
-            return $this->id;
+            return static::getPDO()->lastInsertId();
         } catch (\PDOException $e) {
             echo 'Подключение не удалось: ' . $e->getMessage();
         }
         return 0;
-        */
     }
 
     /**
@@ -94,28 +106,26 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
      *
      * @param array $fields_array
      * @param array $values_array
-     * @return int
+     * @return bool
      */
-    public function updateLine(array $fields_array, array $values_array)  : int
+    public function updateLine(array $fields_array, array $values_array)  : bool
     {
-        /*
         $update_str = '';
         foreach ($fields_array as $key=>$value) {
             $update_str .= "$value=:$value,";
         }
-        $sql = $this->getPDO()->prepare("UPDATE ". static::TABLE_NAME  ." SET ".trim($update_str,',')."  WHERE id=".$this->id);
+        $sql = static::getPDO()->prepare("UPDATE ". static::TABLE_NAME  ." SET ".trim($update_str,',')."  WHERE id=".$this->id);
         foreach ($fields_array as $key=>$value) {
             $sql->bindParam(":$value", $values_array[$key]);
         }
         try {
             $sql->execute();
             $this->getPDO()->errorInfo();
-            return $this->getField('id');
+            return true;
         } catch (\PDOException $e) {
-            echo 'Подключение не удалось: ' . $e->getMessage();
+            echo 'Подключение не удалось: ' . $e->getMessage(); 
         }
-        return 0;
-        */
+        return false; 
     }
 
     /**
@@ -133,27 +143,24 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
         }
         return false;
         */
-    }
+    }  
 
     /**
      * Метод для удаления строки из таблицы
      *
-     * @return int
+     * @return bool
      */
-    public function deleteLine() : int
+    public function deleteLine() : bool  
     {
-        /*
-        $sql = $this->getPDO()->prepare("DELETE FROM ". static::TABLE_NAME  ." WHERE id=:id");
+        $sql = static::getPDO()->prepare("DELETE FROM ". static::TABLE_NAME  ." WHERE id=:id");
         $sql->bindParam(':id', $this->id);
         try {
-            $post_id = $this->getField('id');
             $sql->execute();
-            return $post_id;
+            return true;
         } catch (\PDOException $e) {
-            echo 'Подключение не удалось: ' . $e->getMessage();
+            echo 'Подключение не удалось: ' . $e->getMessage();    
         }
-        return 0;
-        */
+        return false;
     }
 
 }
