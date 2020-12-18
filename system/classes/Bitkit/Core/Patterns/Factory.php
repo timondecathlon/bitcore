@@ -10,15 +10,21 @@ class Factory
 {
     public static function createClass($tableName)  
     {
-        return new class  { 
+        return new class() extends \Bitkit\Core\Entities\Unit { 
+            
+            public function __construct($id, $table)
+            {
+                super::$id;
+                $this->$table = $table;  
+            }
 
 
-            const TABLE_NAME = 'core_cards';     
+            //const TABLE_NAME = 'core_cards';   
             
             public static function getAllLines() : ?array   
             {
                 $lines = [];
-                $sql = static::getPDO()->prepare('SELECT * FROM ' . static::TABLE_NAME );
+                $sql = static::getPDO()->prepare('SELECT * FROM ' . $this->$table );
                 $sql->execute();
                 while ($line = $sql->fetch()) {
                     $lines[] = $line;
