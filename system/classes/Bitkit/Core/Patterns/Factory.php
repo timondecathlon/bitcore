@@ -12,7 +12,8 @@ class Factory
     {
         return new class extends \Bitkit\Core\Entities\Unit { 
 
-            public static $table = $tableName;        
+
+            public static $table = $tableName;             
             
         };
     }
