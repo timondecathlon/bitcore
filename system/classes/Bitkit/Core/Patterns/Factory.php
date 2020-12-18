@@ -10,10 +10,10 @@ class Factory
 {
     public static function createClass($tableName)  
     {
-        return new class extends \Bitkit\Core\Entities\Unit { 
+        return new class($tableName) extends \Bitkit\Core\Entities\Unit { 
 
 
-            public static $table = $tableName;             
+            public static $table = $tableName;              
             
         };
     }
