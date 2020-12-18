@@ -12,7 +12,7 @@ abstract class Factory
     {
         return new class($tableName) extends \Bitkit\Core\Entities\Unit {
 
-            const TABLE_NAME = $tableName;
+            const TABLE_NAME = '$tableName';  
             
         };  
     }
