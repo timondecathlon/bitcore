@@ -10,9 +10,9 @@ abstract class Factory
 {
     public static function createClass(string $tableName)  
     {
-        return new class($tableName) extends \Bitkit\Core\Entities\Unit {
+        return new class($tableName) extends \Bitkit\Core\Entities\Post {
 
-            const TABLE_NAME = '$tableName';  
+            const TABLE_NAME = '$tableName';    
             
         };  
     }
