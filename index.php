@@ -22,6 +22,6 @@ $factory = new \Bitkit\Core\Patterns\Factory();
 $posts = $factory::createClass('core_cards'); 
 
 
-var_dump($posts::getAllLines()); 
+//var_dump($posts::getAllLines()); 
 
 
