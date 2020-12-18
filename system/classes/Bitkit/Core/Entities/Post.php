@@ -2,7 +2,7 @@
 
 namespace Bitkit\Core\Entities;
 
-class Post   
+class Post extends \Bitkit\Core\Entities\Unit  
 {
     
 }
