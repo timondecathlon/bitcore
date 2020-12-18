@@ -3,6 +3,7 @@
  echo 1000000;    
            
 
+ include_once(__DIR__ . '/errors.php');     
 
 include_once(__DIR__ . '/config.php');      
 
