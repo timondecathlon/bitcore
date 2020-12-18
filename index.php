@@ -10,8 +10,12 @@ include_once(__DIR__ . '/config.php');
 
 $card = new \Bitkit\Core\Entities\Card(2);
 
-var_dump($card->getLine());  
+//var_dump($card->getLine());  
 
- 
+
+$posts = new \Bitkit\Core\Patterns\Factory::createClass('core_cards');
+
+
+var_dump($posts::getAllLines()); 
 
 

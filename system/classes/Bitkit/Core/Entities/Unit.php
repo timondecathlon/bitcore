@@ -83,7 +83,7 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
      */
     public function getField($field) : mixed
     {
-        return trim($this->getLine()->$field);
+        return $this->getLine()->$field; 
     } 
 
     /**
@@ -94,11 +94,11 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
      * @param array $values_array
      * @return int
      */
-    public function createLine(array $fields,array $values) : int  
+    public function createLine(array $fields,array $values) : ?int  
     {
         $fields_str = implode(',',$fields);
         $placeholders_str = '';
-        foreach ($fields as $key=>$value) {
+        foreach ($fields as $key => $value) { 
             $placeholders_str .= ":$value,";
         }
         $placeholders_str = trim($placeholders_str,',');
@@ -109,11 +109,11 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
         }
         try {
             $sql->execute();
-            return static::getPDO()->lastInsertId();
+            return static::getPDO()->lastInsertId(); 
         } catch (\PDOException $e) {
             echo 'Подключение не удалось: ' . $e->getMessage();
         }
-        return 0;
+        return null; 
     }
 
     /**
