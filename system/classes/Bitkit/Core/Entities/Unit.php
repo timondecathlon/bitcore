@@ -12,7 +12,7 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
     /**
      * Свойство содержащее в себе данные строки из БД
      */
-    public $bdata; 
+    protected $bdata; 
 
     /**
      * Конструктор получает и сохраняет id  
@@ -64,7 +64,7 @@ abstract class Unit implements \Bitkit\Core\Interfaces\UnitActions
     }
 
 
-    public function getLine()    
+    protected function getLine()     
     {
         if (!$this->bdata) {    
             $sql = static::getPDO()->prepare('SELECT * FROM ' . static::TABLE_NAME . ' WHERE id=' . $this->id);

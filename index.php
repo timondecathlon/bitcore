@@ -15,13 +15,13 @@ include_once(__DIR__ . '/config.php');
 
 $card = new \Bitkit\Core\Entities\Card(2);
 
-//var_dump($card->getLine());  
+var_dump($card->getLine());     
 
-$factory = new \Bitkit\Core\Patterns\Factory();
+//$factory = new \Bitkit\Core\Patterns\Factory();
 
-$posts = $factory::createClass('core_cards'); 
+//$posts = $factory::createClass('core_cards'); 
 
 
-var_dump($posts::getAllLines()); 
+//var_dump($posts::getAllLines()); 
 
 
