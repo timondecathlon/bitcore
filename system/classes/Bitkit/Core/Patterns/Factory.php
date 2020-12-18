@@ -10,9 +10,9 @@ class Factory
 {
     public static function createClass($tableName)  
     {
-        return new class  extends \Bitkit\Core\Entities\Unit { 
+        return new class extends \Bitkit\Core\Entities\Unit { 
 
-            const TABLE_NAME = '$tableName'; 
+            const TABLE_NAME = $tableName;  
             
         };
     }
